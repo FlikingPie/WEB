@@ -1,0 +1,25 @@
+body{
+    background-color: azure;
+}
+
+
+.titulo{
+    color: blue;
+    text-align: center;
+}
+
+
+
+.sub{
+    font: 40px;
+    color:cornflowerblue;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}

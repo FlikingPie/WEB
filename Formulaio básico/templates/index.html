@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+
+<h2 class="titulo">Información personal</h2>
+
+<form method="POST" action="/enviar" onsubmit="return validar()">
+
+    <label class="sub">Nombre:</label><br>
+    <input type="text" name="nombre" id="nombre"><br><br>
+
+    <label class="sub">DNI:</label><br>
+    <input type="text" name="dni" id="dni"><br><br>
+
+    <label class="sub">País:</label><br>
+    <input type="radio" name="pais" value="Perú"> Perú<br>
+    <input type="radio" name="pais" value="Argentina"> Argentina<br>
+    <input type="radio" name="pais" value="Chile"> Chile<br><br>
+
+    <label class="sub">Educación:</label><br>
+    <input type="checkbox" name="educacion" value="Primaria"> Primaria<br>
+    <input type="checkbox" name="educacion" value="Secundaria"> Secundaria<br>
+    <input type="checkbox" name="educacion" value="Universitario"> Universitario<br><br>
+
+    <label class="sub">Comentarios:</label><br>
+    <textarea name="comentarios" id="comentarios"></textarea><br><br>
+
+    <button type="submit">Enviar</button>
+
+</form>
+
+<script>
+function validar() {
+    let nombre = document.getElementById("nombre").value.trim();
+    let dni = document.getElementById("dni").value.trim();
+    let pais = document.querySelector('input[name="pais"]:checked');
+    let educacion = document.querySelectorAll('input[name="educacion"]:checked');
+    let comentario = document.getElementById("comentarios").value.trim();
+
+    if (nombre === "" || !isNaN(nombre)) {
+        alert("Nombre inválido");
+        return false;
+    }
+
+    if (dni === "" || isNaN(dni)) {
+        alert("DNI inválido");
+        return false;
+    }
+
+    if (!pais) {
+        alert("Seleccione un país");
+        return false;
+    }
+
+    if (educacion.length === 0) {
+        alert("Seleccione educación");
+        return false;
+    }
+
+    if (comentario.length > 150) {
+        alert("Comentario muy largo");
+        return false;
+    }
+
+    return true; // ✅ ENVÍA A FLASK
+}
+</script>
+
+</body>
+</html>
