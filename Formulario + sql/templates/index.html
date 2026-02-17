@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardar datos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form method="POST" action="/enviar" onsubmit="return Ingresar_datos()">
+        <h4 class="titulo">Guardar datos del usuario</h4> <br><br>
+        <label>Nombre:</label> <br> <br>
+        <input type="text" name="nombre" id="nombre"><br><br>
+
+        <label>Apellido: </label> <br> <br>
+        <input type="text" name="apellido" id="apellido"> <br><br>
+
+        <label>Género:</label> <br>
+        <input type="radio" name="genero" value="Hombre">Hombre <br>
+        <input type="radio" name="genero" value="Mujer">Mujer <br>
+        <input type="radio" name="genero" value="Otro">Otro <br> <br>
+
+        <label>Carrera Universitaria:</label> <br> <br>
+        <input type="radio" name="carrera" value="Ing.Informatica">Ing.Informatica <br>
+        <input type="radio" name="carrera" value="Ing.Civil">Ing.Civil <br>
+        <input type="radio" name="carrera" value="Medicina">Medicina <br>
+        <input type="radio" name="carrera" value="Derecho">Derecho <br>
+        <input type="radio" name="carrera" value="Psicologia">Psicologia <br> <br>
+
+        <label>Cursos favoritos de PEB:</label> <br> <br>
+        <input type="checkbox" name="curso" value="Historia del Perú">Historia del Perú <br>
+        <input type="checkbox" name="curso" value="Realidad nacional">Realidad nacional <br>
+        <input type="checkbox" name="curso" value="Recursos naturales y medio ambiente">Recursos naturales y medio ambiente <br>
+        <input type="checkbox" name="curso" value="Filosofía">Filosofía <br> <br>
+
+        <button type="submit">Enviar</button>
+        <script>
+            function Ingresar_datos(){
+                let nombre=document.getElementById('nombre').value.trim();
+                let apellido=document.getElementById('apellido').value.trim();
+                let genero=document.querySelector('input[name="genero"]:checked');
+                let carrera=document.querySelector('input[name="carrera"]:checked');
+                let curso_fav=document.querySelectorAll('input[name="curso"]:checked');
+
+                if (nombre=="" || !isNaN(nombre)) {
+                    alert("Nombre inválido o vacío!")
+                    return false
+  
+                }else if (apellido=="" || !isNaN(apellido)) {
+                    alert("Apellido inválido o vacío")
+                    return false
+
+                }else if (!genero) {
+                    alert("Ingrese su género!")
+                    return false
+
+                }else if(!carrera){
+                    alert("Ingrese su carrera universitaria!")
+                    return false
+
+                }else if (curso_fav.length==0){
+                    alert("Seleccione su(s) cursos favoritos!!")
+                    return false
+                    
+                }else{
+                    return true;
+                }
+
+            }
+        </script>
+
+
+        
+    </form>
+</body>
+</html>
